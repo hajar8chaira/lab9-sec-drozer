@@ -1,0 +1,8 @@
+```csv
+ID,Composant,Vulnérabilité,Confiance,Sévérité,Impact,Recommandation,Statut
+V1,DBContentProvider,URI accessibles sans permission,Élevée,Critique,Fuite de données utilisateur,Ajouter permission de lecture/écriture,À corriger
+V2,PWList,Exportée sans protection,Élevée,Élevée,Contournement d'authentification,Définir exported=false,À corriger
+V3,AuthService,Service exporté sans validation,Moyenne,Moyenne,Exécution de synchronisation non autorisée,Implémenter validation d'intent,À corriger
+V4,AndroidManifest,App Debuggable,Élevée,Élevée,Injection de code,Désactiver debuggable,À corriger
+V5,FileSelectActivity,Protection par permission faible,Élevée,Moyenne,Accès à des données utilisateur,Utiliser permission de niveau supérieur,À corriger
+```
