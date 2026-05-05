@@ -19,21 +19,26 @@
 L'installation a commencé par la mise en place de Drozer sur la machine hôte via Python, suivie de la vérification de la connectivité avec l'émulateur Android.
 
 ![Installation de Drozer](./img-lab9-sec/1.png)
+
 *Figure 1 : Installation de Drozer via pip sur Windows.*
 
 ![Vérification ADB](./img-lab9-sec/0.png)
+
 *Figure 2 : Vérification de la version ADB et détection de l'émulateur (emulator-5554).*
 
 ### Installation des composants sur l'émulateur
 Nous avons installé l'application cible (**Sieve**) et l'agent de liaison (**Drozer Agent**).
 
 ![Installation Sieve](./img-lab9-sec/3.png)
+
 *Figure 3 : Installation réussie de sieve.apk.*
 
 ![Installation Agent](./img-lab9-sec/4.png)
+
 *Figure 4 : Installation réussie de drozer-agent.apk.*
 
 ![Validation Drozer PC](./img-lab9-sec/2.png)
+
 *Figure 5 : Validation de l'outil drozer sur la console Windows.*
 
 ![Validation Drozer android](./img-lab9-sec/5.png)
@@ -45,6 +50,7 @@ Nous avons installé l'application cible (**Sieve**) et l'agent de liaison (**Dr
 Après avoir activé le **Embedded Server** sur l'agent Drozer (Port 31415), nous avons établi le pont via ADB avec la commande `adb forward tcp:31415 tcp:31415`.
 
 ![Connexion Console](./img-lab9-sec/6.png)
+
 *Figure 6 : Connexion réussie à la console Drozer v3.1.0.*
 
 ---
@@ -53,10 +59,13 @@ Après avoir activé le **Embedded Server** sur l'agent Drozer (Port 31415), nou
 ![drozer](./img-lab9-sec/7.png)
 
 ![Surface d'Attaque](./img-lab9-sec/9.png)
+
 Nous avons analysé le package `com.withsecure.example.sieve` pour identifier sa surface d'attaque réelle.
 
 ![Surface d'Attaque](./img-lab9-sec/10.png)
+
 ![Surface d'Attaque](./img-lab9-sec/11.png)
+
 *Figure 7 : Résumé de la surface d'attaque identifiée par Drozer.*
 
 **Résultats de la cartographie :**
@@ -148,4 +157,6 @@ Restreindre l'accès à la base de données SQLite :
 * **Signature Permissions** : Pour tout partage nécessaire, définir des permissions avec `protectionLevel="signature"`.
 
 ---
+## 10. Résumé Exécutif
 
+L'audit de l'application **Sieve** a révélé une surface d'attaque critique. L'absence de permissions sur les composants exportés permet à n'importe quelle application tierce de contourner totalement l'authentification et d'accéder à la base de données des mots de passe en clair. L'impact est considéré comme **Critique** pour la confidentialité des utilisateurs.
